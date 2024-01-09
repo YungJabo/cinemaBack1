@@ -49,6 +49,10 @@ app.get("/", async (req, res) => {
 
 io.on("connection", async (socket) => {
   console.log("Новое подключение");
+  socket.on("error", (error) => {
+    console.error("Ошибка подключения:", error);
+    // Здесь вы можете выполнить необходимые действия при ошибке подключения
+  });
 
   socket.on("message:getRoom", () => {
     console.log("Сервер");
