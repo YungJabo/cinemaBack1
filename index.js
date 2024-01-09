@@ -14,10 +14,18 @@ const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
-app.use(cors({ origin: "*" }));
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+  })
+);
 
 let rooms = [];
 
