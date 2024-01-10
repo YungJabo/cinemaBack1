@@ -49,10 +49,6 @@ app.get("/", async (req, res) => {
 
 io.on("connection", async (socket) => {
   console.log("Новое подключение");
-  socket.on("error", (error) => {
-    console.error("Ошибка подключения:", error);
-    // Здесь вы можете выполнить необходимые действия при ошибке подключения
-  });
 
   socket.on("message:getRoom", () => {
     console.log("Сервер");
@@ -133,10 +129,7 @@ io.on("connection", async (socket) => {
     // });
   });
   socket.on("player:uploadFilm", async (url, roomId) => {
-    const videoUrl =
-      "https://cdn4572.vb17123filippaaniketos.pw/stream2/cdn-400/d702354572091eed9d51ca58d8155d4a/=wkMxwmWHxGaMJDey0ERFZ3YzIVeadlR0x0MkNDZ5lzMkNzY2llM5UHZHZVdkNUO6RGSKxWWXBjda1GbzJGWNZ3THp0aZRFaqlFVGpmWtZEbNdlVt1EVFFjTEVlMPdlUolFVrhnWUZ1aZJjSr5EVWlWTE5EaOpnSp1ERrRjTyk1dO1WW04ERWpWTEJEbNJTW35kaChWTR1TP:1704406404:95.24.151.214:f9a16da7a2967ff4570edc40215d58f77d7767aad80948e6c341454bd6e418f7/hls/720.m3u8";
-    // let videoUrl = await axiosGet(url);
-    // videoUrl = videoUrl.slice(0, -10) + "720/index.m3u8";
+    let videoUrl = await axiosGet(url);
     console.log(videoUrl);
     rooms.forEach((room) => {
       if (room.id === roomId) {
