@@ -8,7 +8,7 @@ export const axiosGet = async (url) => {
     const browser = await puppeteer.launch({
       args: chromium.args,
       headless: chromium.headless,
-      executablePath: chromium.executablePath,
+      executablePath: await chromium.executablePath,
     });
     const page = await browser.newPage();
     await page.setViewport({
