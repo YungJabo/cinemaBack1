@@ -1,25 +1,19 @@
 import puppeteer from "puppeteer";
 import cheerio from "cheerio";
-
-import dotenv from "dotenv";
-dotenv.config();
+import chromium from "chrome-aws-lambda";
 
 export const axiosGet = async (url) => {
   return new Promise(async (resolve, reject) => {
     let filmUrl = null;
     const browser = await puppeteer.launch({
-      args: [
-        "--disable-setuid-sandbox",
-        "--no-sandbox",
-        "--single-process",
-        "--no-zygote",
-      ],
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      args: chromium.args,
+      headless: chromium.headless,
+      executablePath: chromium.executablePath,
     });
     const page = await browser.newPage();
     await page.setViewport({
-      width: 1366,
-      height: 720,
+      width: 720,
+      height: 480,
     });
 
     page.on("response", async (response) => {
