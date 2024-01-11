@@ -1,7 +1,8 @@
 import puppeteer from "puppeteer";
 import cheerio from "cheerio";
 
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
 export const axiosGet = async (url) => {
   return new Promise(async (resolve, reject) => {
