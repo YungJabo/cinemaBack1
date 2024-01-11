@@ -1,13 +1,12 @@
-import puppeteer from "puppeteer-core";
-import chromium from "chrome-aws-lambda";
+import puppeteer from "puppeteer";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const axiosGet = async (url) => {
   return new Promise(async (resolve, reject) => {
     let filmUrl = null;
     const browser = await puppeteer.launch({
-      args: chromium.args,
-      headless: chromium.headless,
-      executablePath: await chromium.executablePath,
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
     });
     const page = await browser.newPage();
     await page.setViewport({
