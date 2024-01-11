@@ -4,7 +4,9 @@ import cheerio from "cheerio";
 export const axiosGet = async (url) => {
   return new Promise(async (resolve, reject) => {
     let filmUrl = null;
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+    });
     const page = await browser.newPage();
     await page.setViewport({
       width: 1366,
