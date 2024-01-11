@@ -1,5 +1,4 @@
-import puppeteer from "puppeteer";
-import cheerio from "cheerio";
+import puppeteer from "puppeteer-core";
 import chromium from "chrome-aws-lambda";
 
 export const axiosGet = async (url) => {
