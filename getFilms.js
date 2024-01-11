@@ -3,12 +3,15 @@ import cheerio from "cheerio";
 
 export const getFilms = async (text) => {
   const films = [];
-  const response = await axios.get(`https://kino-hit.lat/search/?q=${text}`);
+  const response = await axios.get(
+    `https://b.kinozadrot5.cc/index.php?do=search&subaction=search&titleonly=3&story=${text}`
+  );
   const $ = cheerio.load(response.data);
-  $(".short_item").each((index, element) => {
-    const href = "https://kino-hit.lat" + $(element).find("a").attr("href");
-    const title = $(element).find(".item_title").text();
-    const img = "https://kino-hit.lat" + $(element).find("img").attr("src");
+  $(".th-item").each((index, element) => {
+    const href = $(element).find("a").attr("href");
+    const title = $(element).find(".th-title").text();
+    const img =
+      "https://b.kinozadrot5.cc/" + $(element).find(".th-img img").attr("src");
     const film = {
       href,
       title,

@@ -10,8 +10,8 @@ export const axiosGet = async (url) => {
     });
     const page = await browser.newPage();
     await page.setViewport({
-      width: 720,
-      height: 480,
+      width: 480,
+      height: 320,
     });
 
     page.on("response", async (response) => {
